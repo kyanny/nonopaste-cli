@@ -17,7 +17,7 @@ You can change NoNoPaste URL. Default URL is http://www.kazeburo.dotcloud.com/
 
 ## Author ##
 
-Kensuke Nagae <kyanny at gmail dot com>
+Kensuke Nagae &lt;kyanny at gmail dot com&gt;
 
 ## License ##
 
