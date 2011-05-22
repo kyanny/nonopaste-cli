@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'uri'
+require 'net/http'
+Net::HTTP.version_1_2
+
+NONOPASTE = ENV["NONOPASTE"] ? ENV["NONOPASTE"] : "http://www.kazeburo.dotcloud.com/add"
+
+def main
+  if $stdin.tty? && !$*.empty? # read data from file
+    $*.map{ |file|
+      post(open(file).read)
+    }
+  else # read data from input redirection
+    post($stdin.read)
+  end
+end
+
+def post(data, nick=`whoami`.chomp)
+  uri = URI(NONOPASTE)
+  Net::HTTP.start(uri.host, uri.port){ |http|
+    req = Net::HTTP::Post.new(uri.path)
+    req.set_form_data({ :body => data, :nick => nick })
+    res = http.request(req)
+    loc = res['location']
+  }
+end
+
+if $0 == __FILE__
+  script = File.basename(__FILE__)
+  opt = OptionParser.new
+  opt.banner = <<-BANNER
+Usage: #{script} file[, file, ...]
+       #{script} < file
+  BANNER
+  puts opt.parse!($*) && main() rescue opt.help
+end
