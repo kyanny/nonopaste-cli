@@ -14,3 +14,11 @@ command line tool for [NoNoPaste](https://github.com/kazeburo/NoNoPaste) and [No
 You can change NoNoPaste URL. Default URL is http://www.kazeburo.dotcloud.com/ 
 
     $ export NONOPASTE=http://example.com/nonopaste/add
+
+## Author ##
+
+Kensuke Nagae <kyanny at gmail dot com>
+
+## License ##
+
+MIT License
