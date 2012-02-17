@@ -26,12 +26,10 @@ def post(data, nick=`whoami`.chomp)
   }
 end
 
-if $0 == __FILE__
-  script = File.basename(__FILE__)
-  opt = OptionParser.new
-  opt.banner = <<-BANNER
+script = File.basename(__FILE__)
+opt = OptionParser.new
+opt.banner = <<-BANNER
 Usage: #{script} file[, file, ...]
        #{script} < file
   BANNER
-  puts opt.parse!($*) && main() rescue opt.help
-end
+puts opt.parse!($*) && main() rescue opt.help
